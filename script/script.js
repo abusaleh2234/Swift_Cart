@@ -1,5 +1,12 @@
 // console.log("script connect");
-
+const categoriesLoaded = async () => {
+    const url = "https://fakestoreapi.com/products/categories"
+    const res = await fetch(url)
+    const data = await res.json()
+    categoriesDisplay(data);    
+    
+}
+categoriesLoaded()
 const allProduct = () => {
     const url = "https://fakestoreapi.com/products";
     fetch(url)
@@ -8,6 +15,20 @@ const allProduct = () => {
     )
 }
 allProduct()
+const categoriesDisplay = (categories) => {
+    const categoriesContainer = document.getElementById("categoriesContainer")
+
+    // categoriesContainer.innerHTML = ""
+
+    categories.forEach(categorie => {
+        console.log(categorie);
+        
+        const div = document.createElement("div")
+        div.innerHTML = `<button class = "p-4 rounded-xl border">${categorie}</button>`
+        categoriesContainer.appendChild(div)
+    })
+}
+
 const displayTrending = (products) => {
     // console.log(products);
     const trendingContainer = document.getElementById("trendingProducts")
