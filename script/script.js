@@ -28,6 +28,26 @@ const categoriesProductLoaded = async (category) => {
     displayAllProducts(data);
     
 }
+
+const loadProductDetails = async (id) => {
+    console.log(id);
+    const url = `https://fakestoreapi.com/products/${id}`
+    const res = await fetch(url)
+    const data = await res.json()
+    displayProductDetails(data);
+        
+}
+
+const displayProductDetails = (product) =>  {
+     const modalDetails = document.getElementById("modalDetails")
+
+     modalDetails.innerHTML = ""
+
+     const div = document.createElement("div")
+     div.innerHTML = "this is modal"
+     modalDetails.appendChild(div)
+     document.getElementById("my_modal_5").showModal()
+}
 const categoriesDisplay = (categories) => {
     const categoriesContainer = document.getElementById("categoriesContainer")
     if(!categoriesContainer){
@@ -40,13 +60,15 @@ const categoriesDisplay = (categories) => {
     allDiv.innerHTML = `<button onclick="allProduct()" id="allProducts" class=" btn-active px-4 py-2 rounded-full capitalize border cursor-pointer">All</button>`
     categoriesContainer.appendChild(allDiv)
     categories.map(category => {
-        console.log(category);
+        // console.log(category);
         
         const div = document.createElement("div")
         div.innerHTML = `<button onclick="categoriesProductLoaded('${category.replace(/'/g, "\\'")}')" class = "px-4 py-2 rounded-full capitalize border cursor-pointer">${category}</button>`
         categoriesContainer.appendChild(div)
     })
 }
+
+
 
 const displayTrending = (products) => {
     // console.log(products);
@@ -99,7 +121,7 @@ const displayAllProducts = (products) => {
         return;
     }
     categoriesProducts.innerHTML = ""
-    products.forEach(product => {
+    products.map(product => {
     // console.log(product);
     // <div class="bg-gray-100 px-20 py-5 aspect-3/2 overflow-hidden w-full"></div>
     const div = document.createElement("div")
@@ -120,12 +142,12 @@ const displayAllProducts = (products) => {
                                     </div>
                                 </div>
                                 <div class="flex-grow">
-                                    <p class="text-base">${product.title}</p>
+                                    <p class="text-base">${product.title.length > 20 ? product.title.slice(0,26): product.title}</p>
                                 <h2 class="card-title">$ ${product.price}</h2>
                                 </div>
                                 
                                 <div class="card-actions flex gap-6 justify-between">
-                                    <button class="flex-1 btn border rounded-lg shadow-md"><i class="fa-regular fa-eye"></i> Details</button>
+                                    <button onclick="loadProductDetails(${product.id})" class="flex-1 btn border rounded-lg shadow-md"><i class="fa-regular fa-eye"></i> Details</button>
                                     <button class=" flex-1 btn btn-primary"><i class="fa-solid fa-cart-arrow-down"></i> Add</button>
                                 </div>
                             </div>

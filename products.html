@@ -33,8 +33,10 @@
                 </div>
                 <div class="navbar-center hidden lg:flex">
                     <ul class="flex gap-8 px-1">
-                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="./index.html">Home</a></li>
-                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="./products.html">Products</a></li>
+                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
+                                href="./index.html">Home</a></li>
+                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
+                                href="./products.html">Products</a></li>
                         <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">About</a></li>
                         <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">Contact</a></li>
                     </ul>
@@ -53,8 +55,10 @@
 
                         <ul tabindex="-1"
                             class=" dropdown-content block bg-base-100 rounded-box z-1 top-10 right-0 mt-3 w-52 p-4 space-y-3 shadow">
-                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="./index.html">Home</a></li>
-                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="./products.html">Products</a>
+                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
+                                    href="./index.html">Home</a></li>
+                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
+                                    href="./products.html">Products</a>
                             </li>
                             <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">About</a>
                             </li>
@@ -70,13 +74,28 @@
     <main>
         <section>
             <div class="py-8 max-w-7xl mx-auto px-3 md:px-0">
-                <h2 class="text-xl md:text-4xl text-center font-bold ">Why Choose Us</h2>
+                <h2 class="text-xl md:text-4xl text-center font-bold ">Our Products</h2>
                 <div id="categoriesContainer" class="flex justify-center flex-wrap items-center gap-7 pt-6">
                     <!-- <button id="allProducts" class=" btn-active px-4 py-2 rounded-full capitalize border">All</button> -->
                 </div>
                 <div id="categoriesProducts" class="grid grid-cols-1 md:grid-cols-3 gap-5 py-10 md:py-20">
 
                 </div>
+                <!-- Open the modal using ID.showModal() method -->
+                <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+                <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                    <div class="modal-box">
+                        <div id="modalDetails" class="">
+
+                        </div>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </dialog>
             </div>
         </section>
 
