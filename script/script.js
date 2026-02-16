@@ -19,6 +19,15 @@ const allProduct = () => {
     )
 }
 allProduct()
+const categoriesProductLoaded = async (category) => {
+    console.log(category);
+    
+    const url = `https://fakestoreapi.com/products/category/${category}`
+    const res = await fetch(url)
+    const data = await res.json()
+    displayAllProducts(data);
+    
+}
 const categoriesDisplay = (categories) => {
     const categoriesContainer = document.getElementById("categoriesContainer")
     if(!categoriesContainer){
@@ -28,13 +37,13 @@ const categoriesDisplay = (categories) => {
     categoriesContainer.innerHTML = ""
 
     const allDiv = document.createElement("div")
-    allDiv.innerHTML = `<button id="allProducts" class=" btn-active px-4 py-2 rounded-full capitalize border">All</button>`
+    allDiv.innerHTML = `<button onclick="allProduct()" id="allProducts" class=" btn-active px-4 py-2 rounded-full capitalize border cursor-pointer">All</button>`
     categoriesContainer.appendChild(allDiv)
-    categories.forEach(categorie => {
-        console.log(categorie);
+    categories.map(category => {
+        console.log(category);
         
         const div = document.createElement("div")
-        div.innerHTML = `<button onclick="" class = "px-4 py-2 rounded-full capitalize border">${categorie}</button>`
+        div.innerHTML = `<button onclick="categoriesProductLoaded('${category.replace(/'/g, "\\'")}')" class = "px-4 py-2 rounded-full capitalize border cursor-pointer">${category}</button>`
         categoriesContainer.appendChild(div)
     })
 }
@@ -85,12 +94,11 @@ const displayTrending = (products) => {
 }
 const displayAllProducts = (products) => {
     // console.log(products);
-    const trendingContainer = document.getElementById("trendingProducts")
-    if(!trendingContainer){
+    const categoriesProducts = document.getElementById("categoriesProducts")
+    if(!categoriesProducts){
         return;
     }
-    trendingContainer.innerHTML = ""
-    // console.log(trendingContainer);
+    categoriesProducts.innerHTML = ""
     products.forEach(product => {
     // console.log(product);
     // <div class="bg-gray-100 px-20 py-5 aspect-3/2 overflow-hidden w-full"></div>
@@ -122,7 +130,7 @@ const displayAllProducts = (products) => {
                                 </div>
                             </div>
                         </div>`
-        trendingContainer.appendChild(div)
+        categoriesProducts.appendChild(div)
             
     });
     
