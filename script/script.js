@@ -28,7 +28,7 @@ const categoriesProductLoaded = async (category) => {
 }
 
 const loadProductDetails = async (id) => {
-    console.log(id);
+    // console.log(id);
     const url = `https://fakestoreapi.com/products/${id}`
     const res = await fetch(url)
     const data = await res.json()
@@ -37,10 +37,14 @@ const loadProductDetails = async (id) => {
 }
 
 const displayProductDetails = (product) =>  {
-    console.log(product);
+    // console.log(product);
     
      const modalDetails = document.getElementById("modalDetails")
-
+    //  console.log(modalDetails);
+     
+    if(!modalDetails){
+        return;
+    }
      modalDetails.innerHTML = ""
      const div = document.createElement("div")
      div.innerHTML = `<div class="card flex flex-col h-full">
@@ -102,7 +106,7 @@ const displayTrending = (products) => {
     trendingContainer.innerHTML = ""
     // console.log(trendingContainer);
     products.slice(0,3).forEach(product => {
-    console.log(product);
+    // console.log(product);
     // <div class="bg-gray-100 px-20 py-5 aspect-3/2 overflow-hidden w-full"></div>
     const div = document.createElement("div")
     div.innerHTML = `<div class="card bg-base-100 shadow-sm flex flex-col h-full">
@@ -127,7 +131,7 @@ const displayTrending = (products) => {
                                 </div>
                                 
                                 <div class="card-actions flex gap-6 justify-between">
-                                    <button class="flex-1 btn border rounded-lg shadow-md"><i class="fa-regular fa-eye"></i> Details</button>
+                                    <button onclick="loadProductDetails(${product.id})" class="flex-1 btn border rounded-lg shadow-md"><i class="fa-regular fa-eye"></i> Details</button>
                                     <button class=" flex-1 btn btn-primary"><i class="fa-solid fa-cart-arrow-down"></i> Add</button>
                                 </div>
                             </div>
