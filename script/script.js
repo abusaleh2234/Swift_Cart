@@ -1,30 +1,17 @@
 // console.log("script connect");
 
-/*
-const loader = (status) => {
-    document.getElementById("categoriesloader")
-    document.getElementById("categoriesProducts")
-    if(document.getElementById("categoriesloader") && document.getElementById("categoriesProducts")){
-        // console.error("categoriesContainer not found in DOM");
-        return;
-    }
-    if (status === true) {
-        document.getElementById("categoriesloader").classList.remove("hidden")
-        document.getElementById("trendingProducts")?.classList.add("hidden")
-    }
-    else{
-        document.getElementById("categoriesloader").classList.remove("hidden")
-        document.getElementById("trendingProducts").classList.add("hidden")
-    }
-}
 
-*/
+
+
 const removeActive = () => {
     const ctgButtons = document.querySelectorAll(".ctgButton")
     const CtgButtonAll = document.getElementById(`allProducts`)
     // console.log(lessonButtons);
     ctgButtons.forEach(btn => btn.classList.remove("active"));
-    CtgButtonAll.classList.remove("active");
+    
+    if (CtgButtonAll) {
+        CtgButtonAll.classList.remove("active");
+    }
 
 }
 
@@ -216,7 +203,9 @@ const allProduct = () => {
         displayTrending(data)
         const CtgButtonAll = document.getElementById(`allProducts`)
          removeActive()
-        CtgButtonAll.classList.add("active");
+         if (CtgButtonAll) {
+            CtgButtonAll.classList.add("active");
+         }
         displayAllProducts(data)
 
     }
@@ -224,3 +213,60 @@ const allProduct = () => {
     // loader(false)
 }
 allProduct()
+
+
+
+
+
+
+
+
+// ==================------------------========================
+
+const box = document.getElementById("hoverClickBox");
+const btn = document.getElementById("hoverClickBtn");
+const card = document.getElementById("hoverClickCard");
+
+let isClickedOpen = false;
+
+/* Hover open */
+box.addEventListener("mouseenter", () => {
+  showCard();
+});
+
+box.addEventListener("mouseleave", () => {
+  if(!isClickedOpen){
+    hideCard();
+  }
+});
+
+/* Click toggle */
+btn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  isClickedOpen = !isClickedOpen;
+
+  if(isClickedOpen){
+    showCard();
+  }else{
+    hideCard();
+  }
+});
+
+/* Click outside close */
+document.addEventListener("click", (e) => {
+  if(!box.contains(e.target)){
+    isClickedOpen = false;
+    hideCard();
+  }
+});
+
+/* Functions */
+function showCard(){
+  card.classList.remove("opacity-0","invisible","translate-y-3");
+  card.classList.add("opacity-100","visible","translate-y-0");
+}
+
+function hideCard(){
+  card.classList.add("opacity-0","invisible","translate-y-3");
+  card.classList.remove("opacity-100","visible","translate-y-0");
+}
