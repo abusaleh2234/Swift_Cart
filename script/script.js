@@ -134,7 +134,7 @@ const displayTrending = (products) => {
                                 
                                 <div class="card-actions flex gap-6 justify-between">
                                     <button onclick="loadProductDetails(${product.id})" class="flex-1 btn border rounded-lg shadow-md"><i class="fa-regular fa-eye"></i> Details</button>
-                                    <button class=" flex-1 btn btn-primary"><i class="fa-solid fa-cart-arrow-down"></i> Add</button>
+                                    <button onclick="cartProductsLoad(${product.id})" class=" flex-1 btn btn-primary"><i class="fa-solid fa-cart-arrow-down"></i> Add</button>
                                 </div>
                             </div>
                         </div>`
@@ -228,5 +228,61 @@ const cartProductsLoad = async (id) => {
     cartItems.push(data);
     localStorage.setItem("cartItem", JSON.stringify(cartItems));
 
-    console.log("Cart Updated:", cartItems);
+    cartItemDisplay(cartItems);
 };
+
+
+
+const cartItemDisplay = (carts) => {
+    const cartContainer = document.getElementById("cartContainer")
+    let total  = 0
+    carts.forEach(cart => {
+        console.log(cart);
+        const totalPrice = document.getElementById("totalPrice")
+        if (!totalPrice) {
+            return;
+        }
+        total = total + cart.price
+        
+        totalPrice.innerText = total
+        const cartContainer = document.getElementById("cartContainer")
+        const tr = document.createElement("tr")
+        tr.innerHTML =`
+        <td>
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="avatar">
+                                                            <div class="mask mask-squircle h-12 w-12">
+                                                                <img src="${cart.
+image
+}"
+                                                                    alt="Avatar Tailwind CSS Component" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td colspan="3">
+                                                    ${cart.title}
+                                                    
+                                                </td>
+                                                <td>$ ${cart.price}</td>
+                                                <th>
+                                                    <button class="btn btn-ghost btn-xs">Delete</button>
+                                                </th>
+        `
+        cartContainer.appendChild(tr)
+        // alert("succes")
+    })
+}
+
+// const cartClick = () => {
+//     let cartItems = JSON.parse(localStorage.getItem("cartItem"));
+//     cartItemDisplay(cartItems);
+//     console.log(cartItems);
+    
+// }
+
+document.getElementById("cartClick").addEventListener("click",() => {
+    let cartItems = JSON.parse(localStorage.getItem("cartItem"))
+    cartItemDisplay(cartItems);
+})
+

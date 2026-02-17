@@ -42,33 +42,72 @@
                     </ul>
                 </div>
                 <div class="navbar-end">
-                    <div class="hidden lg:block space-x-3">
-                        <a href="" class=" hover:text-[#4F39F6]"><i
-                                class="fa-solid fa-cart-arrow-down text-lg text-[#68727F]"></i></a>
-                    </div>
-                    <div class="dropdown">
-                        <a href="" class="lg:hidden hover:text-[#4F39F6]"><i
-                                class="fa-solid fa-cart-arrow-down text-lg text-[#68727F]"></i></a>
-                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                            <i class="fa-solid fa-bars text-lg"></i>
+                    <div class="dropdown dropdown-bottom dropdown-end">
+                        <div tabindex="0" role="button" class=""><a id="cartClick" href=""
+                                class=" hover:text-[#4F39F6]"><i
+                                    class="fa-solid fa-cart-arrow-down text-lg text-[#68727F]"></i></a></div>
+                        <div tabindex="-1" class="dropdown-content menu bg-gray-100 rounded-box z-1 p-2 shadow-sm">
+                            <div class="">
+                                <div class="overflow-y-scroll">
+                                    <table class="table h-1/2">
+                                        <!-- head -->
+                                        <thead>
+                                            <tr>
+                                                <th>
+
+                                                </th>
+                                                <th colspan="3">Name</th>
+                                                <th>Price</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cartContainer">
+                                            <!-- row 1 -->
+
+
+                                        </tbody>
+                                        <!-- foot -->
+                                        <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th colspan="2">Total</th>
+                                                <th></th>
+                                                <th id="totalPrice"></th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-
-                        <ul tabindex="-1"
-                            class=" dropdown-content  bg-base-100 rounded-box z-1 top-10 right-0 mt-3 w-52 p-4 space-y-3 shadow">
-                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
-                                    href="./index.html">Home</a></li>
-                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
-                                    href="./products.html">Products</a>
-                            </li>
-                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">About</a>
-                            </li>
-                            <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">Contact</a>
-                            </li>
-
-                        </ul>
                     </div>
+
+
+
+                </div>
+                <div class="dropdown">
+                    <a href="" class="lg:hidden hover:text-[#4F39F6]"><i
+                            class="fa-solid fa-cart-arrow-down text-lg text-[#68727F]"></i></a>
+                    <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </div>
+
+                    <ul tabindex="-1"
+                        class=" dropdown-content  bg-base-100 rounded-box z-1 top-10 right-0 mt-3 w-52 p-4 space-y-3 shadow">
+                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
+                                href="./index.html">Home</a></li>
+                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]"
+                                href="./products.html">Products</a>
+                        </li>
+                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">About</a>
+                        </li>
+                        <li><a class="text-lg font-medium text-[#68727F] hover:text-[#4F39F6]" href="">Contact</a>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
+        </div>
         </div>
     </header>
     <main>
