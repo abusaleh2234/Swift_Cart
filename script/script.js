@@ -19,11 +19,24 @@ const loader = (status) => {
 }
 
 */
+const removeActive = () => {
+    const ctgButtons = document.querySelectorAll(".ctgButton")
+    const CtgButtonAll = document.getElementById(`allProducts`)
+    // console.log(lessonButtons);
+    ctgButtons.forEach(btn => btn.classList.remove("active"));
+    CtgButtonAll.classList.remove("active");
+
+}
+
 const categoriesProductLoaded = async (category) => {
     console.log(category);
     const url = `https://fakestoreapi.com/products/category/${category}`
     const res = await fetch(url)
     const data = await res.json()
+    const CtgButton = document.getElementById(`ctgProduct-${category}`)
+            removeActive()
+            CtgButton.classList.add("active");
+            
     displayAllProducts(data);
 }
 
@@ -84,13 +97,15 @@ const categoriesDisplay = (categories) => {
     categoriesContainer.innerHTML = ""
 
     const allDiv = document.createElement("div")
-    allDiv.innerHTML = `<button onclick="allProduct()" id="allProducts" class=" btn-active px-4 py-2 rounded-full capitalize border cursor-pointer">All</button>`
+    allDiv.innerHTML = `<button onclick="allProduct()" id="allProducts" class="active btn-active px-4 py-2 rounded-full capitalize border cursor-pointer">All</button>`
     categoriesContainer.appendChild(allDiv)
-    categories.map(category => {
+    
+    categories.map((category,index) => {
         // console.log(category);
-        
+        const CTG = category.replace(/'/g, "\\'")
+        console.log(CTG);
         const div = document.createElement("div")
-        div.innerHTML = `<button onclick="categoriesProductLoaded('${category.replace(/'/g, "\\'")}')" class = "px-4 py-2 rounded-full capitalize border cursor-pointer">${category}</button>`
+        div.innerHTML = `<button onclick="categoriesProductLoaded('${CTG}')" id="ctgProduct-${category}" class = "ctgButton px-4 py-2 rounded-full capitalize border cursor-pointer">${category}</button>`
         categoriesContainer.appendChild(div)
     })
 }
@@ -199,7 +214,11 @@ const allProduct = () => {
     .then(res => res.json())
     .then(data => {
         displayTrending(data)
+        const CtgButtonAll = document.getElementById(`allProducts`)
+         removeActive()
+        CtgButtonAll.classList.add("active");
         displayAllProducts(data)
+
     }
     )
     // loader(false)
