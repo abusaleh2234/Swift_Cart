@@ -176,7 +176,7 @@ const displayAllProducts = (products) => {
                                 
                                 <div class="card-actions flex gap-6 justify-between">
                                     <button onclick="loadProductDetails(${product.id})" class="flex-1 btn border rounded-lg shadow-md"><i class="fa-regular fa-eye"></i> Details</button>
-                                    <button class=" flex-1 btn btn-primary"><i class="fa-solid fa-cart-arrow-down"></i> Add</button>
+                                    <button onclick="cartProductsLoad(${product.id})" class=" flex-1 btn btn-primary"><i class="fa-solid fa-cart-arrow-down"></i> Add</button>
                                 </div>
                             </div>
                         </div>`
@@ -215,58 +215,18 @@ const allProduct = () => {
 allProduct()
 
 
+const cartProductsLoad = async (id) => {
+    const url = `https://fakestoreapi.com/products/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
 
+    let cartItems = JSON.parse(localStorage.getItem("cartItem"));
 
+    if (!cartItems) {
+        cartItems = [];
+    }
+    cartItems.push(data);
+    localStorage.setItem("cartItem", JSON.stringify(cartItems));
 
-
-
-
-// ==================------------------========================
-
-const box = document.getElementById("hoverClickBox");
-const btn = document.getElementById("hoverClickBtn");
-const card = document.getElementById("hoverClickCard");
-
-let isClickedOpen = false;
-
-/* Hover open */
-box.addEventListener("mouseenter", () => {
-  showCard();
-});
-
-box.addEventListener("mouseleave", () => {
-  if(!isClickedOpen){
-    hideCard();
-  }
-});
-
-/* Click toggle */
-btn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  isClickedOpen = !isClickedOpen;
-
-  if(isClickedOpen){
-    showCard();
-  }else{
-    hideCard();
-  }
-});
-
-/* Click outside close */
-document.addEventListener("click", (e) => {
-  if(!box.contains(e.target)){
-    isClickedOpen = false;
-    hideCard();
-  }
-});
-
-/* Functions */
-function showCard(){
-  card.classList.remove("opacity-0","invisible","translate-y-3");
-  card.classList.add("opacity-100","visible","translate-y-0");
-}
-
-function hideCard(){
-  card.classList.add("opacity-0","invisible","translate-y-3");
-  card.classList.remove("opacity-100","visible","translate-y-0");
-}
+    console.log("Cart Updated:", cartItems);
+};
